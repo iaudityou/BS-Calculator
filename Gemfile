@@ -39,6 +39,14 @@ gem 'devise'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+#production and deployment
+gem 'heroku'
+
+group :production do
+  gem 'pg'
+	gem 'thin'
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
