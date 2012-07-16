@@ -1,0 +1,42 @@
+
+
+<%= simple_form_for(@option, :html => { :class => 'form-horizontal' }) do |f| %>
+<%= f.error_notification %>
+
+<div class="inputs">
+  <%= f.input :title, :wrapper => :prepend, :label => "Title" do %>
+    <%= f.input_field :title %>
+	<% end %>
+	<%= f.input :price, :wrapper => :prepend, :label => "Market price" do %>
+		<%= content_tag :span, "$", :class => "add-on" %>
+	    <%= f.input_field :price %>
+	<% end %>
+  <%= f.input :strike, :wrapper => :prepend, :label => "Exercice price" do %>
+		<%= content_tag :span, "$", :class => "add-on" %>
+	    <%= f.input_field :strike %>
+	<% end %>
+	<%= f.input :price, :wrapper => :append, :label => "Expected life" do %>
+	    <%= f.input_field :term  %>
+			<%= content_tag :span, "yrs", :class => "add-on" %>
+	<% end %>
+	<%= f.input :price, :wrapper => :append, :label => "Volatility" do %>
+    <%= f.input_field :volatility %>
+		<%= content_tag :span, "%", :class => "add-on" %>
+	<% end %>
+	<%= f.input :dividend, :wrapper => :prepend, :label => "Dividend yield" do %>
+		<%= f.input_field :dividend %>
+		<%= content_tag :span, "%", :class => "add-on" %>  
+	<% end %>
+	<%= f.input :riskfree, :wrapper => :prepend, :label => "Risk free rate" do %>
+    <%= f.input_field :riskfree %>		
+		<%= content_tag :span, "%", :class => "add-on" %>
+	<% end %>
+</div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, :label => "Calculate", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                options_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<title>Welcome</title>
+
+<div class="row">
+	<div class="span6 offset3">
+		<% unless current_user %>
+			<h1>Create Account</h1>
+			<%= link_to "Create Account", new_user_registration_path  %>
+		<% end %>
+		<% if current_user %>
+			<h1>Start Calculating</h1>
+			<%= link_to "Create Option Calc", options_path %>
+		<% end %>
+	</div><!-- .span6 offset3 -->
+		
+</div><!-- .row -->

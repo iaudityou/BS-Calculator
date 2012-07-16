@@ -1,0 +1,33 @@
+<%- model_class = @option.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= number_to_currency(@option.price, :precision => 5) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:strike) %>:</strong></dt>
+  <dd><%= number_to_currency(@option.strike, :precision => 5) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:term) %>:</strong></dt>
+  <dd><%= @option.term %> years</dd>
+  <dt><strong><%= model_class.human_attribute_name(:volatility) %>:</strong></dt>
+  <dd><%= number_to_percentage(@option.volatility, :precision => 5) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dividend) %>:</strong></dt>
+  <dd><%= number_to_percentage(@option.dividend, :precision => 5) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:riskfree) %>:</strong></dt>
+  <dd><%= number_to_percentage(@option.riskfree, :precision => 5) %></dd>
+  <dt><strong>Fair value</strong></dt>
+  <dd><%= number_to_currency(@option.black_scholes, :precision => 5) %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              options_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_option_path(@option), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              option_path(@option),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
