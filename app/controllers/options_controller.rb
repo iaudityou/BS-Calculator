@@ -37,13 +37,13 @@ class OptionsController < ApplicationController
 
   # GET /options/1/edit
   def edit
-    @option = Option.find(params[:id])
+    @option = current_user.options.find(params[:id])
   end
 
   # POST /options
   # POST /options.json
   def create
-    @option = Option.new(params[:option])
+    @option = current_user.options.build(params[:option])
 
     respond_to do |format|
       if @option.save
